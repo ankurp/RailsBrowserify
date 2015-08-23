@@ -23,9 +23,7 @@ gulp.task('javascript', function() {
 
 gulp.task('browser-sync', function() {
   browserSync.init({
-    server: {
-      baseDir: './public'
-    }
+    proxy: 'localhost:3000'
   });
 });
 
