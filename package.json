@@ -1,0 +1,23 @@
+{
+  "name": "rails-browserify",
+  "version": "1.0.0",
+  "description": "UI",
+  "main": "./lib/assets/js/index.js",
+  "devDependencies": {
+    "babelify": "~6.2.0",
+    "browser-sync": "^2.8.2",
+    "browserify": "~10.2.5",
+    "gulp": "~3.9.0",
+    "vinyl-source-stream": "~1.1.0",
+    "watchify": "~3.3.1"
+  },
+  "scripts": {
+    "build": "./node_modules/.bin/gulp"
+  },
+  "author": "Ankur Patel",
+  "license": "MIT",
+  "dependencies": {
+    "backbone": "~1.2.2",
+    "jquery": "~2.1.4"
+  }
+}
