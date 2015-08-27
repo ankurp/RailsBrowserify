@@ -2,7 +2,7 @@
   "name": "rails-browserify",
   "version": "1.0.0",
   "description": "UI",
-  "main": "./lib/assets/js/index.js",
+  "main": "./app/assets/javascripts/index.js",
   "devDependencies": {
     "babelify": "~6.2.0",
     "browser-sync": "^2.8.2",

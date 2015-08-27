@@ -21,7 +21,7 @@ gulp.task('sass', function() {
 });
 
 gulp.task('js', function() {
-  var bundler = watchify(browserify('app/assets/javascripts/index.js', { debug: true }))
+  var bundler = watchify(browserify({ debug: true }))
     .transform(babelify);
   bundler.on('update', rebundle);
   function rebundle() {
@@ -46,7 +46,4 @@ gulp.watch([
   ]).on('change', browserSync.reload);
 gulp.watch('app/assets/stylesheets/*.scss', ['sass']);
 
-gulp.task('default', ['js', 'sass'], function() {
-  gulp.run('browser-sync');
-});
-
+gulp.task('default', ['js', 'sass', 'browser-sync']);
