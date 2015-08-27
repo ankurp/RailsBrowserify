@@ -8,6 +8,8 @@
     "browser-sync": "^2.8.2",
     "browserify": "~10.2.5",
     "gulp": "~3.9.0",
+    "gulp-sass": "^2.0.4",
+    "gulp-sourcemaps": "^1.5.2",
     "vinyl-source-stream": "~1.1.0",
     "watchify": "~3.3.1"
   },

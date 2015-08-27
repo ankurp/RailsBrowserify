@@ -7,16 +7,28 @@ var source = require('vinyl-source-stream');
 var babelify = require('babelify');
 var browserSync = require('browser-sync').create();
 var watchify = require('watchify');
+var sass = require('gulp-sass');
+var sourcemaps = require('gulp-sourcemaps');
 
-gulp.task('javascript', function() {
-  var bundler = watchify(browserify('lib/assets/js/index.js', { debug: true }))
+gulp.task('sass', function() {
+  return gulp.src('app/assets/stylesheets/*.scss')
+    .pipe(sourcemaps.init())
+    .pipe(sass({
+      includePaths: ['node_modules']
+    }).on('error', sass.logError))
+    .pipe(sourcemaps.write())
+    .pipe(gulp.dest('public/assets/stylesheets'));
+});
+
+gulp.task('js', function() {
+  var bundler = watchify(browserify('app/assets/javascripts/index.js', { debug: true }))
     .transform(babelify);
   bundler.on('update', rebundle);
   function rebundle() {
     return bundler.bundle()
       .pipe(source('bundle.js'))
       .on('error', function (err) { console.log('Error : ' + err.message); })
-      .pipe(gulp.dest('public/assets/js'));
+      .pipe(gulp.dest('public/assets/javascripts'));
   }
   return rebundle();
 });
@@ -27,7 +39,14 @@ gulp.task('browser-sync', function() {
   });
 });
 
-gulp.watch([path.join(__dirname, 'public/*.html'), path.join(__dirname, 'public/assets/js/bundle.js')])
-    .on('change', browserSync.reload);
+gulp.watch([
+    path.join(__dirname, 'public/*.html'), 
+    path.join(__dirname, 'public/assets/javascripts/bundle.js'),
+    path.join(__dirname, 'public/assets/stylesheets/application.css')
+  ]).on('change', browserSync.reload);
+gulp.watch('app/assets/stylesheets/*.scss', ['sass']);
 
-gulp.task('default', ['javascript', 'browser-sync']);
+gulp.task('default', ['js', 'sass'], function() {
+  gulp.run('browser-sync');
+});
+
