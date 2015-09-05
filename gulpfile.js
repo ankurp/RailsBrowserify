@@ -33,12 +33,17 @@ gulp.task('build', function(cb) {
 
 
 gulp.task('sass', function() {
+  var autoprefixer = require('gulp-autoprefixer');
   return gulp.src(path.join(config.src, 'stylesheets/*.{scss,sass}'))
     .pipe(sourcemaps.init())
     .pipe(sass({
       outputStyle: 'compressed',
       includePaths: ['node_modules']
     }).on('error', sass.logError))
+    .pipe(autoprefixer({
+        browsers: ['last 2 versions'],
+        cascade: false
+    }))
     .pipe(sourcemaps.write())
     .pipe(gulp.dest('public/assets/stylesheets'))
     .pipe(browserSync.stream());
@@ -69,10 +74,9 @@ gulp.task('images', function() {
 
 gulp.task('minify', function() {
   var uglify = require('gulp-uglify');
-  var bundlePath = path.join(config.dest, 'javascripts/bundle.js');
-  return gulp.src(bundlePath)
+  return gulp.src(path.join(config.dest, 'javascripts/bundle.js'))
              .pipe(uglify())
-             .pipe(bundlePath);
+             .pipe(gulp.dest(path.join(config.dest, 'javascripts')));
 });
 
 gulp.task('rev', function() {
@@ -80,7 +84,7 @@ gulp.task('rev', function() {
   return gulp.src([
     path.join(config.dest, 'stylesheets/application.css'), 
     path.join(config.dest, 'javascripts/bundle.js')
-  ], {base: 'assets'})
+  ], {base: config.dest})
   .pipe(rev())
   .pipe(gulp.dest(config.dest))
   .pipe(rev.manifest())
@@ -106,6 +110,7 @@ gulp.task('watch', ['build'], function(cb) {
   gulp.watch(path.join(config.src, 'images/**/*'), ['images']);
 
   browserSync.init({
-    proxy: 'localhost:3000'
+    proxy: 'localhost:3000',
+    port: 3001
   });
 });

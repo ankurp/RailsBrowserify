@@ -3,11 +3,13 @@
   "version": "1.0.0",
   "description": "UI",
   "main": "./app/assets/javascripts/index.js",
+  "repository": "https://github.com/ankurp/RailsBrowserify.git",
   "devDependencies": {
     "babelify": "~6.2.0",
     "browser-sync": "^2.8.2",
     "browserify": "~10.2.5",
     "gulp": "~3.9.0",
+    "gulp-autoprefixer": "^3.0.1",
     "gulp-eslint": "^1.0.0",
     "gulp-rev": "^6.0.1",
     "gulp-sass": "^2.0.4",

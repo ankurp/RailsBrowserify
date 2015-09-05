@@ -2,15 +2,17 @@
 
 Template project using
 
-1. gulp
-2. browserify
-3. Rails
+1. gulp - For Asset pipeline
+2. browserify - For resolving dependencies
+3. npm - For package manager
+4. browser-sync - For live reloading and proxying request to Rails API server
+5. Rails - API server
 
 Project transforming `ES6` syntax using babel tranform and using Backbone installed as npm node_module.
 
 ## Getting Started
 
 1. `npm install`
-2. `./node_modules/.bin/gulp` OR `npm install -g gulp && gulp`
+2. `foreman start`
 
-Browser will launch and any changes to files in `lib/assets/js/` will trigger rebundling and reload of the browser.
+Foreman will start up rails server and also run `gulp watch` task.

@@ -2,7 +2,6 @@
 
 import { Router } from 'backbone';
 import EntriesIndexView from './views/entries/index';
-import EntriesCollection from './collections/entries';
 
 export default Router.extend({
 
