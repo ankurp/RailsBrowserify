@@ -1,7 +1,5 @@
-import Backbone from 'backbone';
+import { Collection } from 'backbone';
 
-class Entries extends Backbone.Collection {
-  url = '/api/entries'}
-}
-
-export default Entries;
+export default Collection.extend({
+  url: '/api/entries'
+});

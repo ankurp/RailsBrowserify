@@ -1,16 +1,17 @@
-import Backbone from 'backbone';
+import { View } from 'backbone';
+import _ from 'backbone/node_modules/underscore';
 
-class EntriesIndexView extends Backbone.View {
-  template = `<div></div>`;
+export default View.extend({
+  el: 'main',
+
+  template: _.template(`<div>Entries#Index</div>`),
 
   initialize() {
-    this.collection.on('reset', this.render, this);
-  }
+
+  },
 
   render() {
-    this.$el.html(this.template(entries: this.collection));
+    this.$el.html(this.template());
     return this;
   }
-}
-
-export default EntriesIndexView;
+});

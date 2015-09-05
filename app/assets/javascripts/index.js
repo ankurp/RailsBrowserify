@@ -1,3 +1,7 @@
 'use strict';
 
-import router from './router';
+import { history } from 'backbone';
+import Router from './router';
+
+console.log(new Router());
+history.start();

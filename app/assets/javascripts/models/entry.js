@@ -1,7 +1,4 @@
-import Backbone from 'backbone';
+import { Model } from 'backbone';
 
-class Entry extends Backbone.Model {
-
-}
-
-export default Entry;
+export default Model.extend({
+});
